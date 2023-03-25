@@ -21,17 +21,17 @@
 
 ##  items テーブル
 
-| Column            | Type       | Options                        | 
-| ----------------- | ---------- | ------------------------------ | 
-| name              | string     | null: false                    | 
-| description       | text       | null: false                    | 
-| category          | integer    | null: false                    | 
-| condition         | integer    | null: false                    | 
-| shipping_cost     | integer    | null: false                    | 
-| prefecture        | integer    | null: false                    | 
-| shipping_days     | integer    | null: false                    | 
-| price             | integer    | null: false                    | 
-| user              | references | null: false, foreign_key: true | 
+| Column                 | Type       | Options                        | 
+| -----------------      | ---------- | ------------------------------ | 
+| name                   | string     | null: false                    | 
+| description            | text       | null: false                    | 
+| category_id            | integer    | null: false                    | 
+| condition_id           | integer    | null: false                    | 
+| shipping_cost_id       | integer    | null: false                    | 
+| prefecture_id          | integer    | null: false                    | 
+| scheduled_delivery_id  | integer    | null: false                    | 
+| price                  | integer    | null: false                    | 
+| user                   | references | null: false, foreign_key: true | 
 
 ### Association
 
@@ -51,16 +51,16 @@
 - belongs_to :item
 - has_one    :deliver_adresse
 
-## deliver_adresses テーブル
-| Column     | Type       | Options                   | 
-| ---------- | ------     | ------------------------- | 
-| zip_code   | string     | null: false               | 
-| prefecture | integer    | null: false               | 
-| city       | string     | null: false               | 
-| adress1    | string     | null: false               | 
-| adress2    | string     |                           | 
-| telephone  | string     | null: false,              | 
-| order      | references | null: false, unique: true |
+## deliver_address テーブル
+| Column        | Type       | Options                       | 
+| ----------    | ------     | -------------------------     | 
+| zip_code      | string     | null: false                   | 
+| prefecture_id | integer    | null: false                   | 
+| city          | string     | null: false                   | 
+| address1      | string     | null: false                   | 
+| address2      | string     |                               | 
+| telephone     | string     | null: false,                  | 
+| order         | references | null: false, foreign_key: true|
 ### Association
 
 - belongs_to :order
