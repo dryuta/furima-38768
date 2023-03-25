@@ -49,16 +49,16 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one    :deliver_adresse
+- has_one    :deliver_address
 
-## deliver_address テーブル
+## deliver_addresses テーブル
 | Column        | Type       | Options                       | 
 | ----------    | ------     | -------------------------     | 
 | zip_code      | string     | null: false                   | 
 | prefecture_id | integer    | null: false                   | 
 | city          | string     | null: false                   | 
-| address1      | string     | null: false                   | 
-| address2      | string     |                               | 
+| address       | string     | null: false                   | 
+| building      | string     |                               | 
 | telephone     | string     | null: false,                  | 
 | order         | references | null: false, foreign_key: true|
 ### Association
