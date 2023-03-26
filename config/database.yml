@@ -16,7 +16,7 @@ test:
   username: root
   password:
   host: localhost
-  database: furima38768_test
+  database: furima_38768_test
 
 production:
   <<: *default
