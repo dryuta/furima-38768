@@ -13,6 +13,11 @@ RSpec.describe Item, type: :model do
     end
 
     context '出品ができないとき' do
+      it 'ユーザー登録している人でないと出品できない' do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include()
+      end
       it '１枚画像がないと出品できない' do
         @item.image = nil
         @item.valid?
