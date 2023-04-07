@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :item_paretto,        only: [:show, :edit, :update]
 
   def index
@@ -24,9 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if !user_signed_in? 
-      redirect_to new_user_session_path
-    elsif user_signed_in? && current_user.id != @item.user_id
+    unless user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
     end
   end
