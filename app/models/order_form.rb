@@ -8,7 +8,7 @@ class OrderForm
     # orderモデルのバリデーション
     validates :user_id
     validates :item_id
-    # paymentモデルのバリデーション
+    # deliver_addressモデルのバリデーション
     validates :zip_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
@@ -20,6 +20,6 @@ class OrderForm
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
     # ストロングパラメーターでデータが運ばれ、それらが保存のタイミングで「order_id」が生成され、保存される。
-    Payment.create(order_id: order.id, zip_code: zip_code, prefecture_id: prefecture_id, city: city, address: address, building: building, telephone: telephone)
+    DeliverAddress.create(order_id: order.id, zip_code: zip_code, prefecture_id: prefecture_id, city: city, address: address, building: building, telephone: telephone)
   end
 end
