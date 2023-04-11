@@ -38,8 +38,12 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.building = nil
         expect(@order_address).to be_valid
       end
-      it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
-        @order_address.telephone = 12_345_678_910
+      it '電話番号が11桁なら保存できる' do
+        @order_address.telephone = 12345678910
+        expect(@order_address).to be_valid
+      end
+      it '電話番号が10桁なら保存できる' do
+        @order_address.telephone = 1234567891
         expect(@order_address).to be_valid
       end
     end
@@ -90,13 +94,18 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone is invalid")
       end
-      it '電話番号にハイフンがあると保存できないこと' do
+      it '電話番号に半角数値外があると保存できないこと' do
         @order_address.telephone = '123 - 1234 - 1234'
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone is invalid")
       end
       it '電話番号が12桁以上あると保存できないこと' do
-        @order_address.telephone = 12_345_678_910_123_111
+        @order_address.telephone = 123456789123
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Telephone is invalid")
+      end
+      it '電話番号が９桁以下あると保存できないこと' do
+        @order_address.telephone = 123456789
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Telephone is invalid")
       end
