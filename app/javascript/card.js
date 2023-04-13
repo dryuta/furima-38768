@@ -14,7 +14,7 @@ const pay = () => {
       exp_year: `20${formData.get("order_address[exp_year]")}`,
     };
 
-Payjp.createToken(card, (status, response) => {
+  Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
@@ -31,3 +31,5 @@ Payjp.createToken(card, (status, response) => {
     });
   });
 };
+
+window.addEventListener("load", pay);
