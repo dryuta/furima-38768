@@ -10,6 +10,7 @@ class OrderAddress
     validates :city
     validates :address
     validates :telephone, format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
+    validates :token, presence: true
   end
 
   def save
